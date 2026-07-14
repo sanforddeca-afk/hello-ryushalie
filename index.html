@@ -8,7 +8,6 @@
         body {
             margin: 0;
             padding: 0;
-            /* Gradasi Ungu ke Pink yang Lembut */
             background: linear-gradient(135deg, #d8b4fe, #fbcfe8);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -16,44 +15,59 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            color: #4c1d95; /* Warna teks ungu tua */
+            color: #4c1d95;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             text-align: center;
             max-width: 400px;
             width: 90%;
             backdrop-filter: blur(10px);
-            border: 2px solid #c084fc; /* Bingkai ungu muda */
+            border: 2px solid #c084fc;
             z-index: 10;
-            animation: float 3s ease-in-out infinite;
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            color: #7c3aed; /* Warna judul ungu cerah */
+            color: #7c3aed;
             font-size: 1.8rem;
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
         .heart-icon {
-            font-size: 50px;
-            color: #db2777; /* Warna pink tua */
+            font-size: 45px;
+            color: #db2777;
             animation: pulse 1.2s infinite;
-            margin: 15px 0;
+            margin: 10px 0;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
         }
 
         p {
@@ -63,15 +77,34 @@
             font-weight: 500;
         }
 
-        .signature {
-            font-style: italic;
-            font-weight: bold;
-            color: #db2777;
+        .btn-container {
+            display: flex;
+            gap: 10px;
             margin-top: 15px;
-            font-size: 1.1rem;
         }
 
-        /* Container untuk efek berjatuhan */
+        button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #6d28d9;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Efek Berjatuhan */
         .falling-elements {
             position: absolute;
             width: 100%;
@@ -88,14 +121,8 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-20px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -104,38 +131,97 @@
     <div class="falling-elements" id="dropContainer"></div>
 
     <div class="card">
-        <h1>Happy 2nd Mensiversary! 🎉</h1>
-        <div class="heart-icon">💜</div>
-        
-        <p>
-            "Hi Ryu sayang, my love, my universe, my everything! Happy mensive yang kedua sayang. Terimakasih ya udah mau nemenin aku selama ini, aku sayang kamu kemarin, hari ini, besok, lusa dan seterusnya."
-        </p>
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <h1>Halo Ryushalie! 👋💜</h1>
+            <div class="heart-icon">✨</div>
+            <p>Aku punya sesuatu yang spesial buat kamu di mensive kita kali ini. Klik tombol di bawah buat lanjut ya!</p>
+        </div>
 
-        <div class="signature">With love, Sanford 🌸</div>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h1>Happy Mensive! 🎉</h1>
+            <div class="heart-icon">💖</div>
+            <p>Nggak kerasa ya, hari ini adalah bulan kedua kita bareng-bareng sebagai pasangan. 🥳</p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h1>Terima Kasih... 🙏</h1>
+            <div class="heart-icon">🌸</div>
+            <p>Makasih banyak ya sayang udah mau nemenin aku selama ini. Makasih atas kesabaran, tawa, dan semua hal manis yang kamu bagi sama aku.</p>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h1>Pesan Buat Kamu 💌</h1>
+            <div class="heart-icon">💜</div>
+            <p>"Hi Ryu sayang, my love, my universe, my everything! Happy mensive yang kedua sayang. Aku sayang kamu kemarin, hari ini, besok, lusa dan seterusnya."</p>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h1>Harapan Aku ✨</h1>
+            <div class="heart-icon">🥂</div>
+            <p>Semoga kita bisa terus saling menjaga, saling mendukung, dan melewati bulan-bulan berikutnya dengan penuh kebahagiaan. Tetap sama aku terus ya!</p>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h1>I Love You! 👩‍❤️‍👨</h1>
+            <div class="heart-icon">💖</div>
+            <p>Sekali lagi, happy 2nd mensiversary, Ryushalie sayang! <br><strong>- dari Sanford yang sayang banget sama kamu.</strong></p>
+        </div>
+
+        <!-- Tombol Navigasi -->
+        <div class="btn-container">
+            <button id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
     </div>
 
     <script>
+        // Logika Slideshow
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+
+            // Atur tombol aktif/nonaktif
+            prevBtn.disabled = currentSlide === 0;
+            if (currentSlide === slides.length - 1) {
+                nextBtn.innerText = "Selesai 💜";
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.innerText = "Next";
+                nextBtn.disabled = false;
+            }
+        }
+
+        // Efek Hati & Bunga Lily Berjatuhan
         const container = document.getElementById('dropContainer');
-        // Isinya emoji hati, bunga lily, dan bintang-bintang estetik
-        const items = ['💜', '💖', '🤍', '🌸', '✨', '💕', '⚜️']; 
+        const items = ['💜', '💖', '🌸', '✨', '💕', '⚜️']; 
 
         function createFallingItem() {
             const item = document.createElement('div');
             item.classList.add('element-drop');
             item.innerText = items[Math.floor(Math.random() * items.length)];
             item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = Math.random() * 3 + 3 + 's'; // Kecepatan jatuh (3-6 detik)
-            item.style.fontSize = Math.random() * 15 + 15 + 'px'; // Ukuran random
+            item.style.animationDuration = Math.random() * 3 + 3 + 's';
+            item.style.fontSize = Math.random() * 15 + 15 + 'px';
             
             container.appendChild(item);
 
-            // Hapus element setelah animasi selesai agar web tetap lancar
             setTimeout(() => {
                 item.remove();
             }, 6000);
         }
 
-        // Munculkan element baru setiap 350 milidetik
         setInterval(createFallingItem, 350);
     </script>
 </body>
