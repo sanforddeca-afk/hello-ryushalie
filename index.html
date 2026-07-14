@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mensive Ryushalie! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #4a0e17;
+        }
 
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 2px solid #ff85a1;
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            color: #ff477e;
+            animation: pulse 1.2s infinite;
+            margin: 15px 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .signature {
+            font-style: italic;
+            font-weight: bold;
+            color: #ff477e;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Kelopak Bunga/Hati berguguran */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-drop {
+            position: absolute;
+            color: #ff7096;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heartContainer"></div>
+
+    <div class="card">
+        <h1>Happy 2nd Mensiversary! 🎉</h1>
+        <div class="heart-icon">❤️</div>
+        
+        <p>
+            "Hi Ryu sayang, my love, my universe, my everything! Happy mensive yang kedua sayang. Terimakasih ya udah mau nemenin aku selama ini, aku sayang kamu kemarin, hari ini, besok, lusa dan seterusnya."
+        </p>
+
+        <div class="signature">With love, Sanford 💖</div>
+    </div>
+
+    <script>
+        // Membuat efek hati berjatuhan secara otomatis
+        const container = document.getElementById('heartContainer');
+        const heartIcons = ['❤️', '💖', '🌸', '✨', '💕'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-drop');
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Antara 2 sampai 5 detik
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px'; // Ukuran random
+            
+            container.appendChild(heart);
+
+            // Hapus element hati setelah selesai animasi agar web tidak lemot
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Bikin hati baru setiap 300 milidetik
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
